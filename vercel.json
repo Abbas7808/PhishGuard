@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build --prefix phishguard/client",
+  "outputDirectory": "phishguard/client/dist",
+  "installCommand": "npm install --prefix phishguard/client",
+  "framework": "vite"
+}
