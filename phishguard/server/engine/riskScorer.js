@@ -75,8 +75,8 @@ export function computeRiskScore(rawUrl) {
     });
   }
 
-  // Brand impersonation
-  const brands = detectBrandImpersonation(parsed.hostname);
+  // Brand impersonation (skip for well-known domains)
+  const brands = parsed.isWellKnown ? [] : detectBrandImpersonation(parsed.hostname);
   if (brands.length > 0) {
     const top = brands[0];
     score += WEIGHTS.brandImpersonation;

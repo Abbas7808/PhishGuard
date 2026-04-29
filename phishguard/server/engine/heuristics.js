@@ -15,13 +15,12 @@ export function analyzeHeuristics(url, domain, pathname) {
   let score = 0;
 
   // URL length
-  if (url.length > 75) {
-    score += 10;
-    flags.push({ type: 'long-url', severity: 'info', message: `URL is unusually long (${url.length} characters)` });
-  }
   if (url.length > 150) {
     score += 15;
     flags.push({ type: 'very-long-url', severity: 'warning', message: `URL is excessively long (${url.length} characters) — common in phishing` });
+  } else if (url.length > 75) {
+    score += 10;
+    flags.push({ type: 'long-url', severity: 'info', message: `URL is unusually long (${url.length} characters)` });
   }
 
   // IP address as domain

@@ -1,0 +1,14 @@
+{
+  "name": "phishguard-project",
+  "version": "1.0.0",
+  "description": "Root package to manage PhishGuard client and server",
+  "scripts": {
+    "install:all": "npm install --prefix phishguard/client && npm install --prefix phishguard/server",
+    "dev:client": "npm run dev --prefix phishguard/client",
+    "dev:server": "npm run dev --prefix phishguard/server",
+    "dev": "concurrently \"npm run dev --prefix phishguard/client\" \"npm run dev --prefix phishguard/server\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

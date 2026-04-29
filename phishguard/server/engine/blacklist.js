@@ -31,9 +31,15 @@ export function checkBlacklist(url, domain) {
     results.flags.push({ type: 'suspicious-tld', severity: 'warning', message: `TLD "${tld}" is commonly associated with malicious websites` });
   }
 
-  const urlLower = url.toLowerCase();
+  const domainLower = domain.toLowerCase();
+  let urlPath = '';
+  try {
+    const parsed = new URL(url);
+    urlPath = (parsed.pathname + parsed.search + parsed.hash).toLowerCase();
+  } catch {}
+
   for (const keyword of BLACKLISTED_KEYWORDS) {
-    if (urlLower.includes(keyword)) {
+    if (domainLower.includes(keyword) || urlPath.includes(keyword)) {
       results.flags.push({ type: 'suspicious-keyword', severity: 'warning', message: `URL contains suspicious keyword: "${keyword}"` });
     }
   }
