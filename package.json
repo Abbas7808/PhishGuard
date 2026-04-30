@@ -1,6 +1,7 @@
 {
   "name": "phishguard-project",
   "version": "1.0.0",
+  "type": "module",
   "description": "Root package to manage PhishGuard client and server",
   "scripts": {
     "install:all": "npm install --prefix phishguard/client && npm install --prefix phishguard/server",
