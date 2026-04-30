@@ -9,6 +9,12 @@
     "dev": "concurrently \"npm run dev --prefix phishguard/client\" \"npm run dev --prefix phishguard/server\"",
     "build": "npm run build --prefix phishguard/client"
   },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "validator": "^13.12.0"
+  },
   "devDependencies": {
     "concurrently": "^8.2.2"
   }

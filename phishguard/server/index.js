@@ -11,10 +11,17 @@ app.use(cors());
 app.use(express.json());
 app.use(sanitizeInput);
 
-app.use('/api/analyze', apiLimiter, analyzeRouter);
+app.use(['/api/analyze', '/analyze'], apiLimiter, analyzeRouter);
 
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+// Health check
+app.get(['/api/health', '/health'], (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString(), env: process.env.NODE_ENV });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: 'Internal Server Error', message: err.message });
 });
 
 if (process.env.NODE_ENV !== 'production') {

@@ -9,7 +9,7 @@ export async function analyzeUrl(url) {
 
   if (!response.ok) {
     const data = await response.json().catch(() => ({}));
-    throw new Error(data.error || 'Analysis failed');
+    throw new Error(data.error || `Server error (${response.status})`);
   }
 
   return response.json();
