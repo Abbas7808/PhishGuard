@@ -4,15 +4,10 @@
   "outputDirectory": "phishguard/client/dist",
   "installCommand": "npm install --prefix phishguard/client && npm install --prefix phishguard/server",
   "framework": "vite",
-  "functions": {
-    "phishguard/server/index.js": {
-      "runtime": "@vercel/node"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/phishguard/server/index.js"
+      "destination": "/api/index.js"
     }
   ]
 }
