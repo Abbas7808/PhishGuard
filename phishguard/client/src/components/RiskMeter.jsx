@@ -23,7 +23,8 @@ export default function RiskMeter({ score, classification }) {
 
   const radius = 80;
   const circumference = 2 * Math.PI * radius;
-  const progress = (score / 100) * circumference;
+  const safetyScore = 100 - score;
+  const progress = (safetyScore / 100) * circumference;
 
   return (
     <motion.div
@@ -61,9 +62,9 @@ export default function RiskMeter({ score, classification }) {
             className="text-5xl font-bold font-mono"
             style={{ color: config.color }}
           >
-            {displayScore}
+            {100 - displayScore}
           </span>
-          <span className="text-xs text-gray-400 mt-1">/ 100</span>
+          <span className="text-xs text-gray-400 mt-1">% SAFE</span>
         </div>
       </div>
 
