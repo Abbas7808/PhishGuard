@@ -16,7 +16,7 @@ const KNOWN_BRANDS = [
 const HOMOGLYPHS = {
   'a': ['@', 'а', 'ɑ', 'α'],
   'e': ['е', 'ё', 'ε', '3'],
-  'i': ['і', 'ı', '1', 'l', '|'],
+  'i': ['і', 'ı', '1', '|'],
   'o': ['о', '0', 'ο', 'ø'],
   'l': ['1', 'I', '|', 'ℓ'],
   'c': ['с', 'ϲ', 'ç'],
@@ -83,6 +83,7 @@ export function detectBrandImpersonation(hostname) {
   for (const brand of KNOWN_BRANDS) {
     // 1. Exact match in subdomains or SLD
     for (const part of parts) {
+
       if (part === brand) {
         // If it's the exact brand but not the official domain (this is a simplified check)
         // In a real app, we'd check against a list of official domains

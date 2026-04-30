@@ -20,8 +20,13 @@ app.get(['/api/health', '/health'], (req, res) => {
 
 // Error handler
 app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).json({ error: 'Internal Server Error', message: err.message });
+  const status = err.status || err.statusCode || 500;
+  console.error(`[Error ${status}]`, err);
+  res.status(status).json({
+    error: err.name || 'Internal Server Error',
+    message: err.message,
+    status
+  });
 });
 
 if (process.env.NODE_ENV !== 'production') {
